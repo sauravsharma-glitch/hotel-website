@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Rooms & Suites | Royal Heritage Hotel - Mathura</title>
+     <!-- Favicon / Title Bar Logo -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23c47a3a' rx='20'/%3E%3Ctext x='50' y='72' font-size='52' text-anchor='middle' fill='white' font-weight='bold' font-family='Arial'%3ERH%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23c47a3a' rx='20'/%3E%3Ctext x='50' y='72' font-size='52' text-anchor='middle' fill='white' font-weight='bold' font-family='Arial'%3ERH%3C/text%3E%3C/svg%3E">
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fefaf5;
+            color: #1e2a2f;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-bottom: 1px solid #f0e7dd;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #b4511b;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: #6b4c3b;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #2c3e2f;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #c47a3a;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #c47a3a;
+            color: white;
+            padding: 10px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #9e5e2a;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #c47a3a;
+            color: #c47a3a;
+        }
+
+        .btn-outline:hover {
+            background: #c47a3a;
+            color: white;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+
+        .section-subhead {
+            color: #b5723b;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1e2a2f;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: #5a5a4e;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Room Cards */
+        .rooms-section {
+            margin: 40px 0 70px;
+        }
+
+        .room-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            margin-bottom: 48px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            border: 1px solid #f0e7dd;
+        }
+
+        .room-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .room-image {
+            height: 100%;
+            min-height: 380px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .room-card:hover .room-image {
+            transform: scale(1.02);
+        }
+
+        .room-info {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .room-category {
+            display: inline-block;
+            background: #fef5ea;
+            color: #c47a3a;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: fit-content;
+            margin-bottom: 16px;
+        }
+
+        .room-info h2 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            color: #1e2a2f;
+        }
+
+        .room-description {
+            color: #5a5a4e;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .room-details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: #4a5b52;
+        }
+
+        .detail-item i {
+            width: 24px;
+            color: #c47a3a;
+            font-size: 1rem;
+        }
+
+        .room-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin: 20px 0;
+            padding-top: 16px;
+            border-top: 1px solid #f0e7dd;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #b4511b;
+        }
+
+        .price span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #6b4c3b;
+        }
+
+        .room-actions {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        /* Amenities Banner */
+        .amenities-banner {
+            background: linear-gradient(135deg, #f4efe8 0%, #e9dfd3 100%);
+            border-radius: 32px;
+            padding: 50px 40px;
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .amenity-item {
+            background: white;
+            padding: 24px 16px;
+            border-radius: 24px;
+            transition: 0.2s;
+        }
+
+        .amenity-item i {
+            font-size: 2.2rem;
+            color: #c47a3a;
+            margin-bottom: 12px;
+        }
+
+        .amenity-item h4 {
+            margin-bottom: 6px;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            margin: 60px 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            border-collapse: collapse;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid #f0e7dd;
+        }
+
+        .comparison-table th {
+            background: #fef5ea;
+            font-weight: 600;
+            color: #b4511b;
+        }
+
+        .comparison-table tr:hover {
+            background: #fefaf5;
+        }
+
+        .check-mark {
+            color: #28a745;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e2a2f;
+            color: #e2dbcf;
+            padding: 48px 0 24px;
+            border-radius: 40px 40px 0 0;
+            margin-top: 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #3f4c45;
+            padding-top: 24px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: #e2dbcf;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #c47a3a;
+        }
+
+        @media (max-width: 900px) {
+            .room-card {
+                grid-template-columns: 1fr;
+            }
+            .room-image {
+                min-height: 280px;
+            }
+            .room-info {
+                padding: 28px;
+            }
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav-links {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .room-details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>Royal Heritage <span>Hotel</span></h1>
+            <div style="font-size: 0.8rem;">Mathura • Est. 2018</div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="rooms.html">Rooms</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="btn" style="padding: 8px 28px;">Book Now</a>
+    </nav>
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="section-subhead">Luxury Accommodations</div>
+        <h1>Our Rooms & Suites</h1>
+        <p>Experience comfort, elegance, and warm hospitality in the heart of Mathura. Each room is thoughtfully designed for your ultimate relaxation.</p>
+    </div>
+
+    <!-- Rooms Section -->
+    <div class="rooms-section">
+        <!-- Deluxe Room -->
+        <div class="room-card">
+            <div class="room-image" style="background-image: url('https://images.pexels.com/photos/1648776/pexels-photo-1648776.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+            <div class="room-info">
+                <span class="room-category">Best Value</span>
+                <h2>Deluxe Room</h2>
+                <p class="room-description">Perfect for solo travelers and couples seeking comfort and affordability. Enjoy garden views and modern amenities in a cozy setting.</p>
+                <div class="room-details-grid">
+                    <div class="detail-item"><i class="fas fa-bed"></i> 1 Double Bed + Twin Futon</div>
+                    <div class="detail-item"><i class="fas fa-arrows-alt"></i> 25 sqm | Sleeps 3</div>
+                    <div class="detail-item"><i class="fas fa-tree"></i> Garden View</div>
+                    <div class="detail-item"><i class="fas fa-wind"></i> Air Conditioning</div>
+                    <div class="detail-item"><i class="fas fa-tv"></i> 43" Flat-screen TV</div>
+                    <div class="detail-item"><i class="fas fa-wifi"></i> Free High-speed WiFi</div>
+                    <div class="detail-item"><i class="fas fa-shower"></i> En-suite Bathroom</div>
+                    <div class="detail-item"><i class="fas fa-phone"></i> Direct Dial Phone</div>
+                </div>
+                <div class="room-meta">
+                    <div class="price">₹799 <span>/ night</span></div>
+                    <div class="room-actions">
+                        <a href="#" class="btn">Book Now →</a>
+                        <a href="#" class="btn btn-outline">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Super Deluxe Room -->
+        <div class="room-card">
+            <div class="room-image" style="background-image: url('https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+            <div class="room-info">
+                <span class="room-category">Popular Choice</span>
+                <h2>Super Deluxe Room</h2>
+                <p class="room-description">Spacious and elegantly designed with a separate sitting area. Ideal for couples and small families who appreciate extra space and comfort.</p>
+                <div class="room-details-grid">
+                    <div class="detail-item"><i class="fas fa-bed"></i> 1 King Bed + Twin Bed</div>
+                    <div class="detail-item"><i class="fas fa-arrows-alt"></i> 30 sqm | Sleeps 3</div>
+                    <div class="detail-item"><i class="fas fa-couch"></i> Separate Sitting Area</div>
+                    <div class="detail-item"><i class="fas fa-microphone-alt"></i> Soundproof Windows</div>
+                    <div class="detail-item"><i class="fas fa-balcony"></i> Private Balcony</div>
+                    <div class="detail-item"><i class="fas fa-coffee"></i> Tea/Coffee Maker</div>
+                    <div class="detail-item"><i class="fas fa-luggage"></i> Wardrobe/Closet</div>
+                    <div class="detail-item"><i class="fas fa-hand-sparkles"></i> Premium Toiletries</div>
+                </div>
+                <div class="room-meta">
+                    <div class="price">₹1,299 <span>/ night</span></div>
+                    <div class="room-actions">
+                        <a href="#" class="btn">Book Now →</a>
+                        <a href="#" class="btn btn-outline">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Family Suite -->
+        <div class="room-card">
+            <div class="room-image" style="background-image: url('https://images.pexels.com/photos/1571458/pexels-photo-1571458.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+            <div class="room-info">
+                <span class="room-category">Family Favorite</span>
+                <h2>Family Suite</h2>
+                <p class="room-description">Spacious suite designed for families and groups. Features two double beds, a private balcony, and ample space for a comfortable stay.</p>
+                <div class="room-details-grid">
+                    <div class="detail-item"><i class="fas fa-bed"></i> 2 Double Beds</div>
+                    <div class="detail-item"><i class="fas fa-arrows-alt"></i> 35 sqm | Sleeps 4</div>
+                    <div class="detail-item"><i class="fas fa-balcony"></i> Large Private Balcony</div>
+                    <div class="detail-item"><i class="fas fa-bath"></i> Rain Shower</div>
+                    <div class="detail-item"><i class="fas fa-tv"></i> 50" Smart TV</div>
+                    <div class="detail-item"><i class="fas fa-child"></i> Kids Friendly</div>
+                    <div class="detail-item"><i class="fas fa-wardrobe"></i> Walk-in Closet</div>
+                    <div class="detail-item"><i class="fas fa-minibar"></i> Mini-refrigerator</div>
+                </div>
+                <div class="room-meta">
+                    <div class="price">₹1,799 <span>/ night</span></div>
+                    <div class="room-actions">
+                        <a href="#" class="btn">Book Now →</a>
+                        <a href="#" class="btn btn-outline">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Executive Room -->
+        <div class="room-card">
+            <div class="room-image" style="background-image: url('https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+            <div class="room-info">
+                <span class="room-category">Business Class</span>
+                <h2>Executive Room</h2>
+                <p class="room-description">Designed for business travelers and discerning guests. Features a dedicated work desk, premium amenities, and executive lounge access.</p>
+                <div class="room-details-grid">
+                    <div class="detail-item"><i class="fas fa-bed"></i> 1 Queen Bed</div>
+                    <div class="detail-item"><i class="fas fa-arrows-alt"></i> 25 sqm | Sleeps 2</div>
+                    <div class="detail-item"><i class="fas fa-briefcase"></i> Ergonomic Work Desk</div>
+                    <div class="detail-item"><i class="fas fa-wifi"></i> Ultra-fast WiFi</div>
+                    <div class="detail-item"><i class="fas fa-charging-station"></i> USB Charging Ports</div>
+                    <div class="detail-item"><i class="fas fa-tshirt"></i> Ironing Facilities</div>
+                    <div class="detail-item"><i class="fas fa-laptop"></i> Laptop Safe</div>
+                    <div class="detail-item"><i class="fas fa-coffee"></i> Premium Coffee Machine</div>
+                </div>
+                <div class="room-meta">
+                    <div class="price">₹1,499 <span>/ night</span></div>
+                    <div class="room-actions">
+                        <a href="#" class="btn">Book Now →</a>
+                        <a href="#" class="btn btn-outline">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Presidential Suite (Bonus) -->
+        <div class="room-card">
+            <div class="room-image" style="background-image: url('https://images.pexels.com/photos/704035/pexels-photo-704035.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+            <div class="room-info">
+                <span class="room-category">Ultimate Luxury</span>
+                <h2>Presidential Suite</h2>
+                <p class="room-description">Our most luxurious offering with separate living and dining areas, premium amenities, and exclusive butler service for an unforgettable stay.</p>
+                <div class="room-details-grid">
+                    <div class="detail-item"><i class="fas fa-bed"></i> 1 King Bed</div>
+                    <div class="detail-item"><i class="fas fa-arrows-alt"></i> 55 sqm | Sleeps 4</div>
+                    <div class="detail-item"><i class="fas fa-couch"></i> Separate Living Room</div>
+                    <div class="detail-item"><i class="fas fa-utensils"></i> Dining Area</div>
+                    <div class="detail-item"><i class="fas fa-jacuzzi"></i> Jacuzzi Tub</div>
+                    <div class="detail-item"><i class="fas fa-concierge-bell"></i> Butler Service</div>
+                    <div class="detail-item"><i class="fas fa-champagne-glasses"></i> Welcome Drink</div>
+                    <div class="detail-item"><i class="fas fa-tv"></i> 65" OLED TV</div>
+                </div>
+                <div class="room-meta">
+                    <div class="price">₹3,999 <span>/ night</span></div>
+                    <div class="room-actions">
+                        <a href="#" class="btn">Book Now →</a>
+                        <a href="#" class="btn btn-outline">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Amenities Banner -->
+    <div class="amenities-banner">
+        <div class="section-subhead">All Rooms Include</div>
+        <h2 style="margin-bottom: 16px;">Complimentary Amenities</h2>
+        <p>Every guest enjoys these premium services and facilities during their stay</p>
+        <div class="amenities-grid">
+            <div class="amenity-item">
+                <i class="fas fa-wifi"></i>
+                <h4>High-Speed WiFi</h4>
+                <p>Free throughout hotel</p>
+            </div>
+            <div class="amenity-item">
+                <i class="fas fa-utensils"></i>
+                <h4>Complimentary Breakfast</h4>
+                <p>Pure vegetarian buffet</p>
+            </div>
+            <div class="amenity-item">
+                <i class="fas fa-parking"></i>
+                <h4>Free Parking</h4>
+                <p>24/7 secure parking</p>
+            </div>
+            <div class="amenity-item">
+                <i class="fas fa-water"></i>
+                <h4>Bottled Water</h4>
+                <p>Daily replenished</p>
+            </div>
+            <div class="amenity-item">
+                <i class="fas fa-concierge-bell"></i>
+                <h4>Room Service</h4>
+                <p>7 AM - 10 PM</p>
+            </div>
+            <div class="amenity-item">
+                <i class="fas fa-shield-alt"></i>
+                <h4>Security</h4>
+                <p>CCTV & 24/7 staff</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room Comparison Table -->
+    <div class="comparison-section">
+        <div style="text-align: center; margin-bottom: 32px;">
+            <div class="section-subhead">Compare Rooms</div>
+            <h2>Choose Your Perfect Stay</h2>
+        </div>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Features</th>
+                    <th>Deluxe</th>
+                    <th>Super Deluxe</th>
+                    <th>Family Suite</th>
+                    <th>Executive</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Size (sqm)</td><td>25</td><td>30</td><td>35</td><td>25</td></tr>
+                <tr><td>Max Occupancy</td><td>3</td><td>3</td><td>4</td><td>2</td></tr>
+                <tr><td>Bed Type</td><td>Double + Futon</td><td>King + Twin</td><td>2 Double Beds</td><td>Queen Bed</td></tr>
+                <tr><td>Private Balcony</td><td><i class="fas fa-times" style="color:#dc3545;"></i></td><td><i class="fas fa-check check-mark"></i></td><td><i class="fas fa-check check-mark"></i></td><td><i class="fas fa-times" style="color:#dc3545;"></i></td></tr>
+                <tr><td>Sitting Area</td><td><i class="fas fa-times" style="color:#dc3545;"></i></td><td><i class="fas fa-check check-mark"></i></td><td><i class="fas fa-check check-mark"></i></td><td><i class="fas fa-check check-mark"></i></td></tr>
+                <tr><td>Work Desk</td><td><i class="fas fa-times" style="color:#dc3545;"></i></td><td><i class="fas fa-check check-mark"></i></td><td><i class="fas fa-check check-mark"></i></td><td><i class="fas fa-check check-mark"></i></td></tr>
+                <tr><td>Mini Refrigerator</td><td><i class="fas fa-times" style="color:#dc3545;"></i></td><td><i class="fas fa-check check-mark"></i></td><td><i class="fas fa-check check-mark"></i></td><td><i class="fas fa-check check-mark"></i></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Call to Action -->
+    <div style="background: #c47a3a; border-radius: 32px; padding: 50px 40px; text-align: center; color: white; margin: 40px 0;">
+        <h2 style="color: white; margin-bottom: 16px;">Need Help Choosing?</h2>
+        <p style="margin-bottom: 24px; opacity: 0.95;">Our hospitality experts are here to assist you in selecting the perfect room for your stay.</p>
+        <a href="contact.html" class="btn" style="background: white; color: #c47a3a; padding: 14px 32px;">Contact Us →</a>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <h3>Royal Heritage Hotel</h3>
+                <p style="margin-top: 12px;">Luxury meets tradition in the heart of Mathura. Experience warm hospitality and modern comfort.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul style="list-style: none; margin-top: 12px; line-height: 1.8;">
+                    <li><a href="index.html">About Us</a></li>
+                    <li><a href="rooms.html">Rooms & Tariff</a></li>
+                    <li><a href="#">Banquet Hall</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Reach Us</h4>
+                <p><i class="fas fa-phone"></i> <a href="tel:+919027038209">+91 90270 38209</a></p>
+                <p><i class="fas fa-envelope"></i> reservations@royalheritage.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Krishna Nagar, Mathura, UP</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Royal Heritage Hotel – Premium Hospitality in Mathura. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
